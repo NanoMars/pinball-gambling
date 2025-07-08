@@ -1,0 +1,36 @@
+; Engine configuration file.
+; It's best edited using the editor UI and not directly,
+; since the parameters that go here are not all obvious.
+;
+; Format:
+;   [section] ; section goes between []
+;   param=value ; assign values to parameters
+
+config_version=5
+
+[application]
+
+config/name="Pinball gambling"
+run/main_scene="uid://cft0vuqwouslu"
+config/features=PackedStringArray("4.4", "GL Compatibility")
+config/icon="res://Assets/icon.svg"
+
+[autoload]
+
+Globals="*res://Scripts/Globals.gd"
+
+[display]
+
+window/size/viewport_width=1080
+window/size/viewport_height=1920
+window/stretch/mode="viewport"
+window/stretch/aspect="expand"
+
+[global_group]
+
+pinballs=""
+Node2DRoot=""
+
+[rendering]
+
+renderer/rendering_method="mobile"

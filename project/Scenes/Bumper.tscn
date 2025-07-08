@@ -1,0 +1,18 @@
+[gd_scene load_steps=4 format=3 uid="uid://ckdet457p4seq"]
+
+[ext_resource type="Script" uid="uid://d20lvavt48ray" path="res://Scripts/bumper.gd" id="1_eyuvg"]
+[ext_resource type="Texture2D" uid="uid://d161bqnimtcee" path="res://Assets/rollingBall_vector.svg" id="1_xjx48"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_eyuvg"]
+radius = 41.1096
+
+[node name="StaticBody2D" type="StaticBody2D"]
+script = ExtResource("1_eyuvg")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_xjx48")
+region_enabled = true
+region_rect = Rect2(608, 144, 80, 80)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_eyuvg")

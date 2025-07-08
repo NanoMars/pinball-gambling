@@ -1,0 +1,51 @@
+[gd_scene load_steps=7 format=3 uid="uid://cw5hisw1ais2n"]
+
+[ext_resource type="Script" uid="uid://3wtlif4fp6ab" path="res://Scripts/Pinball.gd" id="1_dbepd"]
+[ext_resource type="Texture2D" uid="uid://d161bqnimtcee" path="res://Assets/rollingBall_vector.svg" id="1_fna3o"]
+
+[sub_resource type="Curve" id="Curve_b4bmo"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_vctnx"]
+radius = 38.0
+
+[sub_resource type="LabelSettings" id="LabelSettings_b4bmo"]
+font_size = 48
+outline_size = 16
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="Curve" id="Curve_dbepd"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.996231, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[node name="RigidBody2D" type="RigidBody2D" groups=["pinballs"]]
+script = ExtResource("1_dbepd")
+width = 10.0
+curve = SubResource("Curve_b4bmo")
+metadata/Value = 1
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(2.3125, 2.3125)
+texture = ExtResource("1_fna3o")
+region_enabled = true
+region_rect = Rect2(208, 144, 32, 32)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_vctnx")
+
+[node name="Label" type="Label" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -13.5
+offset_top = -33.5
+offset_right = 13.5
+offset_bottom = 33.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "2"
+label_settings = SubResource("LabelSettings_b4bmo")
+
+[node name="Line2D" type="Line2D" parent="."]
+width_curve = SubResource("Curve_dbepd")

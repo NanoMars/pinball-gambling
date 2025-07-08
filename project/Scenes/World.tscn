@@ -1,0 +1,86 @@
+[gd_scene load_steps=9 format=3 uid="uid://cft0vuqwouslu"]
+
+[ext_resource type="PackedScene" uid="uid://8cuhvgif2rkv" path="res://Scenes/Seller.tscn" id="1_5nsto"]
+[ext_resource type="Script" uid="uid://brtctwfjbgkbs" path="res://Scripts/pinball_spawner.gd" id="1_gjpho"]
+[ext_resource type="Texture2D" uid="uid://c4lvaxilkax6e" path="res://Assets/Icons/Asset 333.svg" id="1_j0p05"]
+[ext_resource type="Texture2D" uid="uid://byeuc5yw5rxsw" path="res://Assets/Icons/Asset 296.svg" id="2_5nsto"]
+[ext_resource type="PackedScene" uid="uid://cw5hisw1ais2n" path="res://Scenes/Pinball.tscn" id="2_p70al"]
+[ext_resource type="Script" uid="uid://dg5put0i0pexe" path="res://Scripts/MainUI.gd" id="4_45d1s"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_o3h3i"]
+bg_color = Color(0, 0, 0, 0.392157)
+corner_radius_top_left = 35
+corner_radius_top_right = 35
+
+[sub_resource type="LabelSettings" id="LabelSettings_p70al"]
+font_size = 96
+
+[node name="Node" type="Node"]
+
+[node name="Node2DRoot" type="Node2D" parent="." groups=["Node2DRoot"]]
+
+[node name="PinballSpawner" type="Marker2D" parent="Node2DRoot"]
+position = Vector2(553, 0)
+rotation = 1.5708
+script = ExtResource("1_gjpho")
+pinball_scene = ExtResource("2_p70al")
+angle_variance = 0.5
+
+[node name="StaticBody2D" parent="Node2DRoot" instance=ExtResource("1_5nsto")]
+position = Vector2(0, 1731)
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Control" type="Control" parent="CanvasLayer" node_paths=PackedStringArray("money_label")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("4_45d1s")
+money_label = NodePath("Label")
+
+[node name="PanelContainer" type="PanelContainer" parent="CanvasLayer/Control"]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -226.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_styles/panel = SubResource("StyleBoxFlat_o3h3i")
+
+[node name="CenterContainer" type="CenterContainer" parent="CanvasLayer/Control/PanelContainer"]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/Control/PanelContainer/CenterContainer"]
+layout_mode = 2
+theme_override_constants/separation = 221
+
+[node name="Button" type="Button" parent="CanvasLayer/Control/PanelContainer/CenterContainer/HBoxContainer"]
+custom_minimum_size = Vector2(200, 200)
+layout_mode = 2
+icon = ExtResource("1_j0p05")
+flat = true
+icon_alignment = 1
+expand_icon = true
+
+[node name="Button2" type="Button" parent="CanvasLayer/Control/PanelContainer/CenterContainer/HBoxContainer"]
+custom_minimum_size = Vector2(200, 200)
+layout_mode = 2
+icon = ExtResource("2_5nsto")
+flat = true
+icon_alignment = 1
+expand_icon = true
+
+[node name="Label" type="Label" parent="CanvasLayer/Control"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 139.0
+grow_horizontal = 2
+text = "100"
+label_settings = SubResource("LabelSettings_p70al")
+horizontal_alignment = 1
