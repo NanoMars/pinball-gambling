@@ -12,4 +12,3 @@ var _value: int = 1
 func _ready():
 	super._ready()
 	value = _value
-

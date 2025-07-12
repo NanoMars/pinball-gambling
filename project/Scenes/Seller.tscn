@@ -19,19 +19,19 @@ position = Vector2(545, 244)
 shape = SubResource("RectangleShape2D_p17vl")
 
 [node name="ColorRect" type="ColorRect" parent="Area2D"]
-z_index = 1000
+z_index = 1
 offset_top = 15.0
 offset_right = 1080.0
 offset_bottom = 619.0
 color = Color(0.980392, 0.717647, 0.00784314, 1)
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-z_index = 1000
+z_index = 1
 position = Vector2(540, -35)
 texture = ExtResource("1_fex4w")
 
 [node name="Sprite2D2" type="Sprite2D" parent="."]
-z_index = 1000
+z_index = 1
 position = Vector2(540, -35)
 texture = ExtResource("1_fex4w")
 

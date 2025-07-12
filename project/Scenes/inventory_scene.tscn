@@ -1,0 +1,84 @@
+[gd_scene load_steps=4 format=3 uid="uid://cikdw51scq3gf"]
+
+[ext_resource type="Texture2D" uid="uid://bkyxv1mdl3tl2" path="res://Assets/Icons/Asset 323.svg" id="1_h4vb5"]
+[ext_resource type="Script" uid="uid://eys52gscevdr" path="res://Scenes/inventory_scene.gd" id="1_vqtcu"]
+[ext_resource type="Texture2D" uid="uid://cf4pvstefohkr" path="res://Assets/Icons/Asset 346.svg" id="2_vqtcu"]
+
+[node name="PanelContainer" type="PanelContainer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_vqtcu")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="Button" type="Button" parent="VBoxContainer"]
+custom_minimum_size = Vector2(0, 133.29)
+layout_mode = 2
+flat = true
+icon_alignment = 1
+
+[node name="CenterContainer" type="CenterContainer" parent="VBoxContainer/Button"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="TextureRect" type="TextureRect" parent="VBoxContainer/Button/CenterContainer"]
+custom_minimum_size = Vector2(50, 30)
+layout_mode = 2
+mouse_filter = 2
+texture = ExtResource("1_h4vb5")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/margin_left = 70
+theme_override_constants/margin_top = 70
+theme_override_constants/margin_right = 70
+theme_override_constants/margin_bottom = 70
+
+[node name="HFlowContainer" type="HFlowContainer" parent="VBoxContainer/MarginContainer"]
+layout_mode = 2
+theme_override_constants/h_separation = 30
+theme_override_constants/v_separation = 30
+
+[node name="Button" type="Button" parent="VBoxContainer/MarginContainer/HFlowContainer"]
+layout_mode = 2
+icon = ExtResource("2_vqtcu")
+
+[node name="Button2" type="Button" parent="VBoxContainer/MarginContainer/HFlowContainer"]
+layout_mode = 2
+icon = ExtResource("2_vqtcu")
+
+[node name="Button3" type="Button" parent="VBoxContainer/MarginContainer/HFlowContainer"]
+layout_mode = 2
+icon = ExtResource("2_vqtcu")
+
+[node name="Button4" type="Button" parent="VBoxContainer/MarginContainer/HFlowContainer"]
+layout_mode = 2
+icon = ExtResource("2_vqtcu")
+
+[node name="Button5" type="Button" parent="VBoxContainer/MarginContainer/HFlowContainer"]
+layout_mode = 2
+icon = ExtResource("2_vqtcu")
+
+[node name="Button6" type="Button" parent="VBoxContainer/MarginContainer/HFlowContainer"]
+layout_mode = 2
+icon = ExtResource("2_vqtcu")
+
+[connection signal="pressed" from="VBoxContainer/Button" to="." method="_on_button_pressed"]

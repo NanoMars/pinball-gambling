@@ -1,11 +1,12 @@
-[gd_scene load_steps=9 format=3 uid="uid://cft0vuqwouslu"]
+[gd_scene load_steps=10 format=3 uid="uid://cft0vuqwouslu"]
 
 [ext_resource type="PackedScene" uid="uid://8cuhvgif2rkv" path="res://Scenes/Seller.tscn" id="1_5nsto"]
 [ext_resource type="Script" uid="uid://brtctwfjbgkbs" path="res://Scripts/pinball_spawner.gd" id="1_gjpho"]
 [ext_resource type="Texture2D" uid="uid://c4lvaxilkax6e" path="res://Assets/Icons/Asset 333.svg" id="1_j0p05"]
-[ext_resource type="Texture2D" uid="uid://byeuc5yw5rxsw" path="res://Assets/Icons/Asset 296.svg" id="2_5nsto"]
 [ext_resource type="PackedScene" uid="uid://cw5hisw1ais2n" path="res://Scenes/Pinball.tscn" id="2_p70al"]
 [ext_resource type="Script" uid="uid://dg5put0i0pexe" path="res://Scripts/MainUI.gd" id="4_45d1s"]
+[ext_resource type="PackedScene" uid="uid://cikdw51scq3gf" path="res://Scenes/inventory_scene.tscn" id="5_y7y61"]
+[ext_resource type="Texture2D" uid="uid://djung4qmbios8" path="res://Assets/Icons/Asset 335.svg" id="6_45d1s"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_o3h3i"]
 bg_color = Color(0, 0, 0, 0.392157)
@@ -20,7 +21,7 @@ font_size = 96
 [node name="Node2DRoot" type="Node2D" parent="." groups=["Node2DRoot"]]
 
 [node name="PinballSpawner" type="Marker2D" parent="Node2DRoot"]
-position = Vector2(553, 0)
+position = Vector2(427, 384)
 rotation = 1.5708
 script = ExtResource("1_gjpho")
 pinball_scene = ExtResource("2_p70al")
@@ -29,9 +30,9 @@ angle_variance = 0.5
 [node name="StaticBody2D" parent="Node2DRoot" instance=ExtResource("1_5nsto")]
 position = Vector2(0, 1731)
 
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
-
-[node name="Control" type="Control" parent="CanvasLayer" node_paths=PackedStringArray("money_label")]
+[node name="Control" type="Control" parent="." node_paths=PackedStringArray("money_label")]
+top_level = true
+z_index = 2
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -40,8 +41,9 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("4_45d1s")
 money_label = NodePath("Label")
+inventory_scene = ExtResource("5_y7y61")
 
-[node name="PanelContainer" type="PanelContainer" parent="CanvasLayer/Control"]
+[node name="PanelContainer" type="PanelContainer" parent="Control"]
 layout_mode = 1
 anchors_preset = 12
 anchor_top = 1.0
@@ -52,14 +54,14 @@ grow_horizontal = 2
 grow_vertical = 0
 theme_override_styles/panel = SubResource("StyleBoxFlat_o3h3i")
 
-[node name="CenterContainer" type="CenterContainer" parent="CanvasLayer/Control/PanelContainer"]
+[node name="CenterContainer" type="CenterContainer" parent="Control/PanelContainer"]
 layout_mode = 2
 
-[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/Control/PanelContainer/CenterContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="Control/PanelContainer/CenterContainer"]
 layout_mode = 2
-theme_override_constants/separation = 221
+theme_override_constants/separation = 105
 
-[node name="Button" type="Button" parent="CanvasLayer/Control/PanelContainer/CenterContainer/HBoxContainer"]
+[node name="Button" type="Button" parent="Control/PanelContainer/CenterContainer/HBoxContainer"]
 custom_minimum_size = Vector2(200, 200)
 layout_mode = 2
 icon = ExtResource("1_j0p05")
@@ -67,15 +69,23 @@ flat = true
 icon_alignment = 1
 expand_icon = true
 
-[node name="Button2" type="Button" parent="CanvasLayer/Control/PanelContainer/CenterContainer/HBoxContainer"]
+[node name="InventoryButton" type="Button" parent="Control/PanelContainer/CenterContainer/HBoxContainer"]
 custom_minimum_size = Vector2(200, 200)
 layout_mode = 2
-icon = ExtResource("2_5nsto")
+icon = ExtResource("6_45d1s")
 flat = true
 icon_alignment = 1
 expand_icon = true
 
-[node name="Label" type="Label" parent="CanvasLayer/Control"]
+[node name="Button3" type="Button" parent="Control/PanelContainer/CenterContainer/HBoxContainer"]
+custom_minimum_size = Vector2(200, 200)
+layout_mode = 2
+icon = ExtResource("1_j0p05")
+flat = true
+icon_alignment = 1
+expand_icon = true
+
+[node name="Label" type="Label" parent="Control"]
 layout_mode = 1
 anchors_preset = 10
 anchor_right = 1.0
@@ -84,3 +94,5 @@ grow_horizontal = 2
 text = "100"
 label_settings = SubResource("LabelSettings_p70al")
 horizontal_alignment = 1
+
+[connection signal="pressed" from="Control/PanelContainer/CenterContainer/HBoxContainer/InventoryButton" to="Control" method="_on_inventory_button_pressed"]
